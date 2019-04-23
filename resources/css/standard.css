@@ -1,0 +1,15 @@
+nav{
+    background: rgb(194, 24, 91);
+    box-shadow: none;
+    border: none;
+}
+
+.page-footer{
+    background: rgb(194, 24, 91);
+    box-shadow: none;
+    border: none;
+}
+
+.divider{
+    margin: 4em;
+}
