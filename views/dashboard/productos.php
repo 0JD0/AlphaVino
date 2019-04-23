@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Productoss</title>
+    <title>Productos</title>
     <link type="image/png" rel="icon" href="../../resources/img/logo.png" />
     <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/icons.css" />
@@ -26,7 +26,7 @@
             <ul id="tabs-swipe-demo" class="tabs center-align">
                 <li class="tab col s3"><a href="#test-swipe-1">Inventario</a></li>
                 <li class="tab col s3"><a href="#test-swipe-2">Productos</a></li>
-                <li class="tab col s3"><a href="#test-swipe-3">Categoria</a></li>
+                <li class="tab col s3"><a href="#test-swipe-3">Categoría</a></li>
             </ul>
             <div id="test-swipe-1" class="col s12 yellow">Inventario</div>
             <div id="test-swipe-2" class="col s12">
@@ -34,10 +34,10 @@
                 <div class="row">
                     <div class="col s12">
                         <h3 class="center-align grey-text">Administrar Productos</h3>
-                        <!-- autocomplete para búscar -->
+                        <!-- autocomplete para buscar -->
                         <div class="input-field col s6 m6">
                             <i class="material-icons prefix">search</i>
-                            <!-- el search de la izquierda muetrael icono que quires que se vea -->
+                            <!-- el search de la izquierda muestra el icono que quires que se vea -->
                             <input type="text" id="autocomplete-input" class="autocomplete" />
                             <label for="autocomplete-input">Buscar</label>
                         </div>
