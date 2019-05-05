@@ -18,7 +18,7 @@ class Database
     private function connect()
     {
         $server = 'localhost';
-        $database = 'alphavino';
+        $database = 'alphavino_db';
         $username = 'root';
         $password = '';
         try {
