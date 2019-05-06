@@ -105,44 +105,44 @@
                                 <div class="row">
                                     <div class="input-field col s12 m6">
                                         <i class="material-icons prefix">person</i>
-                                        <input type="text" id="create-nombre-producto" name="create-nombre-producto"
+                                        <input type="text" id="create_nombre_producto" name="create_nombre_producto"
                                             class="validate" required />
-                                        <label for="create-nombre-producto">Nombre</label>
+                                        <label for="create_nombre_producto">Nombre</label>
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <i class="material-icons prefix">category</i>
-                                        <select id="create-categoria-producto" name="create-categoria-producto">
+                                        <select id="create_categoria_producto" name="create_categoria_producto">
                                         </select>
                                         <label>Categoria</label>
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <i class="material-icons prefix">attach_money</i>
-                                        <input type="number" id="create-precio-producto" name="create-precio-producto"
+                                        <input type="number" id="create_precio_producto" name="create_precio_producto"
                                             class="validate" max="999.99" min="0.01" step="any" required />
-                                        <label for="create-precio-producto">Precio ($)</label>
+                                        <label for="create_precio_producto">Precio ($)</label>
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <i class="material-icons prefix">history</i>
-                                        <input type="number" id="create-cosecha-producto" name="create-cosecha-producto"
+                                        <input type="number" id="create_cosecha_producto" name="create_cosecha_producto"
                                             class="validate" required />
-                                        <label for="create-cosecha-producto">Cosecha</label>
+                                        <label for="create_cosecha_producto">Cosecha</label>
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <i class="material-icons prefix">local_shipping</i>
-                                        <select id="create-bodega-producto" name="create-bodega-producto">
+                                        <select id="create_bodega_producto" name="create_bodega_producto">
                                         </select>
                                         <label>Bodega</label>
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <i class="material-icons prefix">assignment</i>
-                                        <input type="text" id="create-descripccion-producto"
-                                            name="create-descripcion-producto" class="validate" required />
-                                        <label for="create-descripcion-producto">Descripcion</label>
+                                        <input type="text" id="create_descripcion_producto"
+                                            name="create_descripcion_producto" class="validate" required />
+                                        <label for="create_descripcion_producto">Descripcion</label>
                                     </div>
                                     <div class="file-field input-field col s12 m6">
                                         <div class="btn waves-effect">
                                             <span><i class="material-icons">image</i></span>
-                                            <input id="create-image-producto" type="file" name="create-image-producto"
+                                            <input id="create_image_producto" type="file" name="create_image_producto"
                                                 required />
                                         </div>
                                         <div class="file-path-wrapper">
@@ -156,8 +156,8 @@
                                                 <span>Estado:</span>
                                                 <label>
                                                     <i class="material-icons">visibility_off</i>
-                                                    <input id="create_estado" type="checkbox" name="create_estado"
-                                                        checked />
+                                                    <input id="create_estado_producto" type="checkbox"
+                                                        name="create_estado_producto" checked />
                                                     <span class="lever"></span>
                                                     <i class="material-icons">visibility</i>
                                                 </label>
@@ -180,35 +180,76 @@
                     </div>
 
                     <!-- Modal Structure -->
-                    <div id="modal-editar" class="modal">
+                    <div id="modal-update" class="modal">
                         <div class="modal-content">
                             <h4 class="center-align">Editar Producto</h4>
-                            <div class="row">
-                                <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix">cake</i>
-                                    <input type="text" id="autocomplete-input" class="validate" />
-                                    <label for="autocomplete-input">Nombre</label>
+                            <form method="post" id="form-update" enctype="multipart/form-data">
+                                <input type="hidden" id="id_producto" name="id_producto" />
+                                <input type="hidden" id="imagen_producto" name="imagen_producto" />
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <i class="material-icons prefix">person</i>
+                                        <input type="text" id="update_nombre_producto" name="update_nombre_producto"
+                                            class="validate" required />
+                                        <label for="update_nombre_producto">Nombre</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <i class="material-icons prefix">category</i>
+                                        <select id="update_categoria_producto" name="update_categoria_producto">
+                                        </select>
+                                        <label>Categoria</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <i class="material-icons prefix">attach_money</i>
+                                        <input type="number" id="update_precio_producto" name="update_precio_producto"
+                                            class="validate" max="999.99" min="0.01" step="any" required />
+                                        <label for="update_precio_producto">Precio ($)</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <i class="material-icons prefix">history</i>
+                                        <input type="number" id="update_cosecha_producto" name="update_cosecha_producto"
+                                            class="validate" required />
+                                        <label for="update_cosecha_producto">Cosecha</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <i class="material-icons prefix">local_shipping</i>
+                                        <select id="update_bodega_producto" name="update_bodega_producto">
+                                        </select>
+                                        <label>Bodega</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <i class="material-icons prefix">assignment</i>
+                                        <input type="text" id="update_descripcion_producto"
+                                            name="update_descripcion_producto" class="validate" required />
+                                        <label for="update_descripcion_producto">Descripcion</label>
+                                    </div>
+                                    <div class="file-field input-field col s12 m6">
+                                        <div class="btn waves-effect">
+                                            <span><i class="material-icons">image</i></span>
+                                            <input id="update_image_producto" type="file" name="update_image_producto"
+                                                required />
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input type="text" class="file-path validate"
+                                                placeholder="Seleccione una imagen de 500x500" />
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <p>
+                                            <div class="switch">
+                                                <span>Estado:</span>
+                                                <label>
+                                                    <i class="material-icons">visibility_off</i>
+                                                    <input id="update_estado_producto" type="checkbox"
+                                                        name="update_estado_producto" checked />
+                                                    <span class="lever"></span>
+                                                    <i class="material-icons">visibility</i>
+                                                </label>
+                                            </div>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix">attach_money</i>
-                                    <input type="text" id="autocomplete-input" class="validate" />
-                                    <label for="autocomplete-input">Precio</label>
-                                </div>
-                                <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix">assignment</i>
-                                    <input type="text" id="autocomplete-input" class="validate" />
-                                    <label for="autocomplete-input">Descripcion</label>
-                                </div>
-                                <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix">book</i>
-                                    <select id="create_categoria" name="create_categoria">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                    </select>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         <div class="row center-align">
                             <a href="#" class="modal-close btn waves-effect red tooltipped " data-tooltip="Cancelar">
@@ -233,7 +274,7 @@
                     <!-- autocomplete para búscar -->
                     <div class="input-field col s6 m6">
                         <i class="material-icons prefix">search</i>
-                        <!-- el search de la izquierda muetrael icono que quires que se vea -->
+                        <!-- el search de la izquierda muetra el icono que quires que se vea -->
                         <input type="text" id="autocomplete-input" class="autocomplete" />
                         <label for="autocomplete-input">Buscar</label>
                     </div>
@@ -392,7 +433,7 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">book</i>
-                                    <select id="create_categoria" name="create_categoria">
+                                    <select id="update_categoria" name="update_categoria">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="1">Option 1</option>
                                         <option value="2">Option 2</option>
