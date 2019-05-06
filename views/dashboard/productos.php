@@ -79,7 +79,7 @@
                                             <td>De</td>
                                             <td>Datos</td>
                                             <td>
-                                                <a href="#modal-editar"
+                                                <a href="#modal-update"
                                                     class="waves-effect waves-blue tooltipped modal-trigger"
                                                     data-tooltip="Editar">
                                                     <i class="material-icons blue-text">edit</i>
