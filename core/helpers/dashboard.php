@@ -13,7 +13,7 @@ class Dashboard
 			<head>
 				<meta charset="utf-8">
 				<title>Dashboard - '.$title.'</title>
-				<link type="image/png" rel="icon" href="../../resources/img/logo.png" />
+				<link type="image/png" rel="icon" href="../../resources/img/loguito.png" />
 				<link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css">
 				<link type="text/css" rel="stylesheet" href="../../resources/css/icons.css" />
 				<link type="text/css" rel="stylesheet" href="../../resources/css/standard.css">
@@ -28,7 +28,7 @@ class Dashboard
 				<nav>
 					<div class="nav-wrapper">
 						<a href="#!" class="brand-logo center">
-							<img src="../../resources/img/l.jpg">
+							<img src="../../resources/img/logo.png">
 						</a>
 						<a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">
 							<i class="material-icons">menu</i>

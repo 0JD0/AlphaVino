@@ -13,3 +13,7 @@ nav{
 .divider{
     margin: 4em;
 }
+
+header img{
+    height: 56px;
+}

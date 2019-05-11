@@ -1,20 +1,15 @@
 <?php
-/*
-    Clase para realizar las operaciones en la base de datos.
-*/
+    /* clase para las operaciones de la base de datos */
+
 class Database
 {
-/*
-    Atributos de la clase para almacenar los datos necesarios al realizar las acciones respectivas.
-*/
+/* variable para almacenar datos */
     private static $connection = null;
     private static $statement = null;
     private static $id = null;
 
-/*
-    Método para establecer la conexión con la base de datos utilizando las credenciales respectivas.
-    No recibe parámetros y no devuelve ningún valor, capturando las excepciones del servidor de bases de datos.
-*/
+/* metodo que establece la conexion de la base de datos
+   No recibe parámetros y no devuelve ningún valor, capturando las excepciones del servidor de bases de datos. */
     private function connect()
     {
         $server = 'localhost';
