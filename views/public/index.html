@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="framework/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="framework/materialize/css/icon.css">
+    <link rel="stylesheet" href="framework/fontawesome-free-5.8.2-web/css/all.min.css">
+    <link rel="stylesheet" href="css/index_public.css">
+    <title>Alpha Vino</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo" @click="m0=true, m1=false">Logo</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#" @click="m0=false, m1=true">Productos</a>
+                        </li>
+                        <li>
+
+                            <a class="modal-trigger" href="#modal1">Iniciar Session</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li>
+                <a href="#" @click="m0=false, m1=true">Productos</a>
+            </li>
+            <li>
+                <a class="modal-trigger" href="#modal1">Iniciar Session</a>
+            </li>
+        </ul>
+        <div class="inicio" :style="{display: m0 ? 'block':'none'}">
+            <!--Parte principal-->
+            <div class="row">
+                <div class="col s12 m7 l6 p1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s12">
+                                <h2>
+                                    Somos la mejor distribuidora de vinos
+                                </h2>
+                                <h5>
+                                    ¿Se te apetece un vino tinto de la mejor calidad?
+                                </h5>
+                            </div>
+                            <div class="col s6">
+                                <a class="waves-effect waves-light btn">
+                                    <i class="material-icons left">local_bar</i>
+                                    Ver más
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m5 l6 p2">
+                </div>
+            </div>
+            <!--Categorias-->
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 center">
+                        <h3>Marcas</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 l4" v-for="dato in bodegas" :key="dato.id">
+                    <div class="card small">
+                        <div class="card-image">
+                            <img src="img/vino2.jpg">
+                            <span class="card-title">{{dato.nombre.toUpperCase()}}</span>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" @click="m0 = false, m1 = true, buscar(2,dato.nombre)">Ver productos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="productos" :style="{display: m1 ? 'block':'none'}">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 center">
+                        <h3>Productos</h3>
+                    </div>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">search</i>
+                                <input type="text" id="autocomplete-input" class="autocomplete" v-model="busc" @keydown.enter="buscar(0,busc)">
+                                <label for="autocomplete-input">Nombre de vino</label>
+                            </div>
+                            <div class="chip" v-if="filtros != ''">
+                                {{filtros}}
+                                <i class="close material-icons" @click="buscar(1,'')">close</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 right-align">
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header right-align">
+                                    <i class="material-icons">apps</i>Filtro
+                                </div>
+                                <div class="collapsible-body">
+                                    <a href="#!" @click="buscar(1,'')">
+                                        Todos /
+                                    </a>
+                                    <a href="#!" v-for="dato in cates" :key="dato.id" @click="buscar(1,dato.nombre)">
+                                        {{dato.nombre}} /
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 l4" v-for="dato in vinos" :key="dato.id">
+                    <div class="card">
+                        <div class="card-image">
+                            <img :src="dato.img" alt="No seha colocado imagen">
+                            <span class="card-title black-text">
+                                {{dato.vino}}
+                            </span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"  @click="addCarrito(dato.id,dato.vino,dato.precio,dato.img)">
+                                <i class="material-icons">add</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <h6>
+                                $ {{dato.precio}}
+                            </h6>
+                            <p>
+                                {{dato.descripcion}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carritos">
+            <div class="caja">
+                <a class="carrito" @click="modalC = true">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+        </div>
+        <!--Modal de iniciar sesion-->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-footer">
+                <a v-if="session == 0" href="#!" class="waves-effect waves-green btn-flat" @click="reg=!reg,inse=!inse,olvidar=false">
+                    {{ reg ? 'Iniciar Sesion' : 'Registrarse'}}
+                </a>
+                <a v-if="session > 0" href="#!" class="waves-effect waves-green btn-flat" @click="logout()">
+                    Cerrar Sesion
+                </a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+                    Cerrar
+                </a>
+            </div>
+            <div class="modal-content">
+                <h4 v-if="olvidar == false">{{ inse ? 'Iniciar Sesion' : 'Registrarse'}}</h4>
+                <h4 v-if="olvidar == true">Recuperar contraseña</h4>
+                <div class="row">
+                    <!--Apartado para ingresar-->
+                    <form class="col s12" :style="{display: inse ? 'block' : 'none' }"  v-if="session == 0" v-if="olvidar==false"
+                    @submit.prevent="login">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input type="email" class="validate" v-model="p0" name="correo">
+                                <label for="email">Correo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">https</i>
+                                <input type="password" class="validate" v-model="p1" name="contra">
+                                <label for="password">Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 center recordar">
+                                <div class="switch">
+                                    <label>
+                                        Recordar
+                                    </label>
+                                    <label>
+                                        No
+                                        <input type="checkbox">
+                                        <span class="lever"></span>
+                                        Si
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col s12 center recordar">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                    Iniciar Sesion
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                            <div class="col s12 center">
+                                <a href="#!" @click="olvidar=!olvidar">
+                                    Olvidaste la contraseña?
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                    <!--Apartado para registrarse-->
+                    <form class="col s12" :style="{display: reg ? 'block' : 'none' }"  v-if="session == 0" @submit.prevent="getIngresar">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" class="validate" v-model="p0" name="nombre">
+                                <label for="last_name">Nombre</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input type="text" class="validate" v-model="p1" name="apellido">
+                                <label for="last_name">Apellido</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="number" class="validate" v-model="p2" name="telefono">
+                                <label for="last_name">Telefono</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input type="date" class="validate" v-model="p3" name="fecha">
+                                <label for="last_name">Fecha</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="email" class="validate" v-model="p4" name="correo">
+                                <label for="email">Correo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="password" class="validate" v-model="p5">
+                                <label for="password">Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="password" class="validate" v-model="p6" name="contra">
+                                <label for="password">Repetir Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 center">
+
+                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                    Registrarse
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!--Apartado de olvidar contraseña-->
+                    <form class="col s12" :style="{display: olvidar ? 'block' : 'none' }" v-if="session == 0">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 center">
+
+                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                    Recuperar
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!--Estos son los datos del cliente al logearse-->
+                    <form class="col s12"  v-if="session > 0" @submit.prevent="getCambiar" v-for="dato in usuario"
+                        :key="usuario.id">
+                        <div class="row">
+                            <div class="col s6">
+                                <label for="last_name">Nombre</label>
+                                <input type="text" class="validate" v-model="dato.nombre" name="nombre" required>
+                            </div>
+                            <div class="col s6">
+                                <input type="text" class="validate" v-model="dato.apellido" name="apellido" required>
+                                <label for="last_name">Apellido</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6">
+                                <input type="number" class="validate" v-model="dato.telefono" name="telefono" required>
+                                <label for="last_name">Telefono</label>
+                            </div>
+                            <div class="col s6">
+                                <input type="date" class="validate" v-model="dato.fecha" name="fecha" required>
+                                <label for="last_name">Fecha</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <input type="email" class="validate" v-model="dato.correo" name="correo" required>
+                                <label for="email">Correo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <input type="password" class="validate" v-model="p5" name="contra">
+                                <label for="password">Cambiar Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 center">
+
+                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                    Cambiar
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Modal del carrito-->
+        <div :class="['modal-carrito', modalC ? 'act-c' : 'inact-c']">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 rigth-align">
+                        <a class="btn waves-effect waves-light"  @click="modalC = false">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    <div class="col s12 center">
+                        <h4>
+                            Carrito
+                        </h4>
+                    </div>
+                    <div class="col s12 contenido">
+                        <div class="row">
+                            <div class="col s12 m4" v-for="dato in carrito" :key="dato.cid">
+                                <div class="card">
+                                    <div class="card-image center">
+                                        <img :src="dato.img">
+                                        <a class="btn-floating halfway-fab waves-effect waves-light red" 
+                                        @click="deleteCarrito(dato.cid)">
+                                            <i class="material-icons">close</i>
+                                        </a>
+                                    </div>
+                                    <div class="card-content">
+                                        <h6>Cantidad: {{dato.cantidad}} </h6>
+                                        <h5>{{dato.nombre}}</h5>
+                                        <h6>$ {{dato.precio}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 center-align">
+                        <h4>
+                            Total:
+                            $ {{total}}
+                        </h4>
+                        <button class="btn waves-effect waves-light " @click="getCarrito" v-if="session > 0">
+                            Pagar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer-bh>
+
+        </footer-bh>
+    </div>
+    <script src="framework/fontawesome-free-5.8.2-web/js/all.min.js"></script>
+    <script src="framework/materialize/jquery-3.4.1.min.js"></script>
+    <script src="framework/materialize/js/materialize.min.js"></script>
+    <script src="framework/vue.js"></script>
+    <script src="framework/axios.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/index_public.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+header nav{
+    background: #5a2c85;
+    border: none;
+}
+
+header img{
+    width: 170px;
+    height: 60px;
+}
+
+header img.background{
+    width: 400px;
+    height: 400px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer.page-footer{
+    background: #020429;
+    border: none;
+}
+
+footer div.footer-copyright{
+    background: #030608;
+    border: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .brand-logo img {
+     height: 55px;
+    }
+}
+
+
+
