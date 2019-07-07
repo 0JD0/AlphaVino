@@ -1,129 +1,149 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>usuarios</title>
-    <link rel="stylesheet" href="../../resources/css/materialize.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/standard.css">
-</head>
-<body>
-  <!--se crea la barra de navegacion-->
-  <div class="navbar-fixed">
-  <nav class="nav-extended" >
-    <div class="nav-wrapper">
-      <a href="index.php" class="brand-logo">  AlphaVino</a>
-      <a href="#" data-target="mobile-vinos" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <!--se crea el buscador-->
-        <li>
-          <div class="input-field col s12 m4 center">
-              <input id="search" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-          </div>
-        </li>
-        <li><a href="usuarios.php">usuarios</a></li>
-        <li><a href="clientes.php">clientes</a></li>
-        <li><a href="productos.php">productos</a></li>
-        <li><a href="registro.php">registro de ventas</a></li>   
-      </ul>
+<?php
+require_once('../../core/helpers/dashboard.php');
+Dashboard::headerTemplate('Administrar usuarios');
+?>
+<div class="row">
+    <!-- Formulario de bÃºsqueda -->
+    <form method="post" id="form-search">
+        <div class="input-field col s6 m4">
+            <i class="material-icons prefix">search</i>
+            <input id="buscar" type="text" name="busqueda"/>
+            <label for="buscar">Buscardor</label>
+        </div>
+        <div class="input-field col s6 m4">
+            <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar"><i class="material-icons">check_circle</i></button>
+        </div>
+    </form>
+    <!-- BotÃ³n para abrir ventana de nuevo registro -->
+    <div class="input-field center-align col s12 m4">
+        <a href="#modal-create" class="btn waves-effect indigo tooltipped modal-trigger" data-tooltip="Agregar"><i class="material-icons">add_circle</i></a>
     </div>
-  </nav>
-
-<!--se crea el menu del modo responsive-->
-<ul class="sidenav" id="mobile-vinos">
-  <li>
-    <div class="input-field col s12 m4">
-        <input id="search" type="search" required>
-        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-        <i class="material-icons">close</i>
-    </div>
-  </li>
-  <li><a href="usuarios.php">usuarios</a></li>
-  <li><a href="clientes.php">clientes</a></li>
-  <li><a href="productos.php">productos</a></li>
-  <li><a href="registro.php">registro de ventas</a></li> 
-</ul>
 </div>
-    <div>
-    <div class="center  teal lighten-1" >
-        <p  class="flow-text z-depth-5 white-text" >informacion de usuarios</p>
-    </div>
-    <div class="row">
+<!-- Tabla para mostrar los registros existentes -->
+<table class="highlight">
+    <thead>
+        <tr>
+            <th>APELLIDOS</th>
+            <th>NOMBRES</th>
+            <th>TELEFONO</th>
+            <th>CORREO</th>
+            <th>ALIAS</th>
+            <th>FOTO</th>
+            <th>ACCIÃ“N</th>
 
-      <div class="col s7 push-s5"><span class="flow-text">lista de usuarios</span>
-      <div>
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <a class=" waves-effect waves-light btn"> <i class="material-icons">search</i>buscar</a>
-       <div class="rigth input-field col s6">
-      <input value="" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2"></label>
+        </tr>
+    </thead>
+    <tbody id="tbody-read">
+    </tbody>
+</table>
+<!-- Ventana para crear un nuevo registro -->
+<div id="modal-create" class="modal">
+    <div class="modal-content">
+        <h4 class="center-align">Crear usuario</h4>
+        <form method="post" id="form-create" enctype="multipart/form-data">
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="create_nombres" type="text" name="create_nombres" class="validate" required/>
+                <label for="nombres">Nombres</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="create_apellidos" type="text" name="create_apellidos" class="validate" required/>
+                <label for="apellidos">Apellidos</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="create_telefono" type="number" name="create_telefono" class="validate" required/>
+                <label for="telefono">Telefono</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">email</i>
+                <input id="create_correo" type="email" name="create_correo" class="validate" required/>
+                <label for="correo">Correo</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person_pin</i>
+                <input id="create_alias" type="text" name="create_alias" class="validate" required/>
+                <label for="alias">Alias</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">security</i>
+                <input id="create_clave1" type="password" name="create_clave1" class="validate" required/>
+                <label for="clave1">Clave</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">security</i>
+                <input id="create_clave2" type="password" name="create_clave2" class="validate" required/>
+                <label for="clave2">Confirmar clave</label>
+            </div>
+            <div class="file-field input-field col s12 m6">
+                    <div class="btn waves-effect">
+                        <span><i class="material-icons">image</i></span>
+                        <input id="create_archivo" type="file" name="create_archivo" required/>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input type="text" class="file-path validate" placeholder="Seleccione una imagen"/>
+                    </div>
+            </div>
+        </div>
+            <div class="row center-align">
+                <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i class="material-icons">save</i></button>
+            </div>
+        </form>
     </div>
-      </div>
-     
-      <table>
-        <thead>
-          <tr>
-              <th>id_usuario</th>
-              <th>nombre</th>
-              <th>apellido</th>
-              <th>correo</th>
-              <th>telefono</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-           
-          </tr>
-          <tr>
-            
-          </tr>
-          <tr>
-          </tr>
-        </tbody>
-      </table>
-            
-      </div>
-      <div class="col s5 pull-s7"><span class="flow-text">editar informacion</span>
-      
-      <div class="row">
-    <div class="input-field col s6">
-      <input value="" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">id_usuario</label>
-    </div>
-    <div class="input-field col s6">
-      <input value="" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">nombre</label>
-    </div>
-    <div class="input-field col s6">
-      <input value="" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">apellido</label>
-    </div>
-    <div class="input-field col s6">
-      <input value="" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">correo</label>
-    </div>
-    <div class="input-field col s6">
-      <input value="" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">telefono</label>
-    </div>
-  </div>
-      </div>
-    </div>
-    </div>
-    <div class="left">
-    
-    <a class="waves-effect waves-light btn">Guardar</a>
-<a class="waves-effect waves-light btn"><i ></i>Modificar</a>
-<a class="waves-effect waves-light btn"><i ></i>Eliminar</a>
 </div>
-
-
-
-<script src="../../resources/js/materialize.js"></script>
-<script type="text/javascript" src="../../resources/js/standard.js"></script>
-</body>
-</html>
+<!-- Ventana para modificar un registro existente -->
+<div id="modal-update" class="modal">
+    <div class="modal-content">
+        <h4 class="center-align">Modificar usuario</h4>
+        <form method="post" id="form-update" enctype="multipart/form-data">
+            <input type="hidden" id="id_empleado" name="id_empleado"/>
+            <input type="hidden" id="imagen_usuario" name="imagen_usuario"/>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="update_nombres" type="text" name="update_nombres" class="validate" required/>
+                    <label for="update_nombres">Nombres</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="update_apellidos" type="text" name="update_apellidos" class="validate" required/>
+                    <label for="update_apellidos">Apellidos</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="update_telefono" type="number" name="update_telefono" class="validate" required/>
+                    <label for="update_telefono">Telefono</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="update_correo" type="email" name="update_correo" class="validate" required/>
+                    <label for="update_correo">Correo</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person_pin</i>
+                    <input id="update_alias" type="text" name="update_alias" class="validate" required/>
+                    <label for="update_alias">Alias</label>
+                </div>
+                <div class="file-field input-field col s12 m6">
+                    <div class="btn waves-effect">
+                        <span><i class="material-icons">image</i></span>
+                        <input id="update_archivo" type="file" name="update_archivo"/>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Seleccione una imagen"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row center-align">
+                <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Modificar"><i class="material-icons">save</i></button>
+            </div>
+        </form>
+    </div>
+</div>
+<?php
+Dashboard::footerTemplate('usuarios.js');
+?>
