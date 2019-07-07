@@ -121,9 +121,6 @@
 <a class="waves-effect waves-light btn"><i ></i>Eliminar</a>
 </div>
 
-
-
-<script src="../../resources/js/materialize.js"></script>
-<script type="text/javascript" src="../../resources/js/standard.js"></script>
-</body>
-</html>
+<?php
+Dashboard::footerTemplate('usuarios.js');
+?>
