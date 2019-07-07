@@ -1,4 +1,5 @@
 <?php
+/* Clase para validar todos los campos de entrada. */
 class Validator
 {
 	private $imageError = null;
@@ -51,6 +52,7 @@ class Validator
 	public function validateImageFile($file, $path, $name, $maxWidth, $maxHeigth)
 	{
 		if ($file) {
+			//Se comprueba si el archivo tiene un tamaño menor o igual a 2MB
 	     	if ($file['size'] <= 2097152) {
 		    	list($width, $height, $type) = getimagesize($file['tmp_name']);
 				if ($width <= $maxWidth && $height <= $maxHeigth) {
