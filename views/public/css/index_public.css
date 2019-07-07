@@ -1,0 +1,220 @@
+:root{
+    --primary: #404040;
+    --primaryM: #4d4b4b;
+    --secondary: #4b1a21;
+    --button: #800000;
+    --hover: #762933;
+    --blank: #ffffff;
+}
+html {
+    scroll-behavior: smooth;
+}
+nav{
+    background: var(--primary);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+nav li a{
+    transition: 1s;
+}
+* .btn{
+    background: var(--button);
+}
+* .btn:hover, nav li a:hover{
+    background: var(--hover);
+    transition: 0.5s;
+}
+* .btn:focus{
+    background: var(--hover);
+    transition: 0.5s;
+}
+
+.inicio{
+    display: none;
+}
+
+.p1{
+    background: var(--secondary);
+    color: var(--blank);
+    height: 95vh;
+}
+.p2{
+    height: 95vh;
+    -webkit-box-shadow: -4px 0px 15px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 0px 15px -3px rgba(0,0,0,0.75);
+    box-shadow: -4px 0px 15px -3px rgba(0,0,0,0.75);
+    animation: pop 15s infinite;
+}
+@keyframes pop{
+    0%{
+        background: url(../img/vino.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    25%{
+        background: url(../img/vino2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    50%{
+        background: url(../img/vino3.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    75%{
+        background: url(../img/vino2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    100%{
+        background: url(../img/vino.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+.inicio .s12 h2{
+    padding-top: 30%;
+}
+.vinos{
+    overflow-x: auto;
+}
+.vinos img{
+    width: 50%;
+    height: 100%;
+}
+.vinos .vino{
+    float: left;
+    width: 25%;
+    padding: 10px 50px;
+}
+
+.inicio .col .card-image .card-title{
+    color: #000000;
+}
+.productos .collapsible{
+    border: none;
+    box-shadow: none;
+}
+.productos .collapsible-header{
+    border: none;
+    box-shadow: none;
+}
+.productos .card-image img{
+    width: 300px;
+    height: 300px;
+}
+
+.recordar{
+    margin-bottom: 10px;
+}
+
+.carritos{
+    position: fixed;
+    left: 95%;
+    top: 90%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+}
+
+.carritos .caja{
+    position: relative;
+    width: 65px;
+    height: 65px;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+    border-radius: 50%;
+    overflow: hidden;
+}
+.carritos .caja .carrito{
+    position: absolute;
+    color: var(--blank);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 50%;
+    background: var(--button);
+    font-size: 19px;
+}
+.carritos .carrito:hover{
+    background: var(--hover);
+}
+.act-c{
+    left: 0%;
+    overflow:hidden;
+    transition: 0.5s;
+}
+.inact-c{
+    left: 100%;
+    overflow:hidden;
+    transition: 0.5s;
+}
+.modal-carrito{
+    position: fixed;
+    top: 0%;
+    width: 100vw;
+    height: 100vh;
+    background: var(--primary);
+    z-index: 99999;
+}
+.modal-carrito h4{
+    color: var(--blank);
+}
+.modal-carrito .contenido{
+    height: 70vh;
+    background: var(--primaryM);
+    overflow-x: auto; 
+}
+.modal-carrito .card-image img{
+    width: 80%;
+    height: 300px;
+}
+.page-footer{
+    background:  var(--primary);
+}
+.page-footer a{
+    font-size: 35px;
+}
+.page-footer ul li a i:hover{
+     color: var(--hover);
+}
+footer{
+    padding-bottom: 25px; 
+}
+@media only screen and (max-width: 780px){
+    .p1{
+        height: 30vh;
+    }
+    .p2{
+        height: 70vh;
+    }
+    .s12 h2{
+        font-size: 30px;
+        padding-top: 1%;
+    }
+    .s12 h5{
+        font-size: 18px;
+        padding-top: 1%;
+    }
+    .vinos .vino{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 1000px){
+    .p1{
+        height: 50vh;
+    }
+    .p2{
+        height: 50vh;
+    }
+    .s12 h2{
+        font-size: 30px;
+        padding-top: 1%;
+    }
+    .s12 h5{
+        font-size: 18px;
+        padding-top: 1%;
+    }
+}

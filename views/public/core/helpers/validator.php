@@ -56,8 +56,9 @@ class Validator
 	     	if ($file['size'] <= 2097152) {
 		    	list($width, $height, $type) = getimagesize($file['tmp_name']);
 				if ($width <= $maxWidth && $height <= $maxHeigth) {
-					//Tipos de imagen: 1 - GIF, 2 - JPG y 3 - PNG
+					//Se verifica si la imagen cumple con alguno de los formatos: 1 - GIF, 2 - JPG y 3 - PNG
 					if ($type == 1 || $type == 2 || $type == 3) {
+						//Se comprueba si el archivo tiene un nombre, sino se le asigna uno
 						if ($name) {
 							if (file_exists($path.$name)) {
 								$this->imageName = $name;

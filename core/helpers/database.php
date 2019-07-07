@@ -13,7 +13,7 @@ class Database
     private function connect()
     {
         $server = 'localhost';
-        $database = 'alphavino_db';
+        $database = 'alphavino';
         $username = 'root';
         $password = '';
         try {
@@ -24,7 +24,7 @@ class Database
     }
 
 /*
-    Método para anular la conexión con la base de datos y capturar la información de las excepciones en las sentencias SQL.
+    Este método tiene por objetivo anular la conexión con la base de datos y capturar la información de las excepciones en las sentencias SQL.
     No recibe parámetros y no devuelve ningún valor.
 */
     private function desconnect()
@@ -37,7 +37,7 @@ class Database
     }
 
 /*
-    Método para ejecutar las siguientes sentencias SQL: insert, update y delete.
+    Este método tiene por objetivo ejecutar las siguientes sentencias SQL: insert, update y delete.
     Recibe como parámetros la sentencia SQL de tipo string y los valores de los campos respectivos en un arreglo.
     Se utiliza además, para obtener el valor de la llave primaria del último registro insertado.
     Devuelve como resultado TRUE en caso de éxito y FALSE en caso contrario.
@@ -53,9 +53,9 @@ class Database
     }
 
 /*
-    Método para obtener el resultado del primer registro de una consulta tipo SELECT.
+    Este método tiene como propósito obtener el resultado del primer registro de una consulta tipo SELECT.
     Recibe como parámetros la sentencia SQL de tipo string y los valores de los campos respectivos en un arreglo.
-    Devuelve como resultado un arreglo asociativo del registro en caso de éxito, NULL en caso contrario.
+    Devuelve como resultado un arreglo del registro númerico y asociativo en caso de éxito, NULL en caso contrario.
 */
     public static function getRow($query, $values)
     {
@@ -67,9 +67,9 @@ class Database
     }
 
 /*
-    Método para obtener todos los registros de una consulta tipo SELECT.
+    Este método tiene como propósito obtener todos los registros de una consulta tipo SELECT.
     Recibe como parámetros la sentencia SQL de tipo string y los valores de los campos respectivos en un arreglo.
-    Devuelve como resultado un arreglo asociativo de los registros en caso de éxito, NULL en caso contrario.
+    Devuelve como resultado un arreglo con los registros númericos y asociativos en caso de éxito, NULL en caso contrario.
 */
     public static function getRows($query, $values)
     {
@@ -81,7 +81,7 @@ class Database
     }
 
 /*
-    Método para obtener el valor de la llave primaria del último registro insertado.
+    Este método tiene por objetivo devolver el valor de la llave primaria del último registro insertado.
     No recibe parámetros.
 */
     public static function getLastRowId()
@@ -90,7 +90,7 @@ class Database
     }
 
 /*
-    Método para obtener el mensaje de error al ocurrir una excepción.
+    Este método tiene por objetivo devolver un mensaje de error al ocurrir una excepción.
     No recibe parámetros.
 */
     private static function getException($code, $message)
