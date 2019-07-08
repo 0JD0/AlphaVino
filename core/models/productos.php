@@ -170,5 +170,19 @@ class Productos extends Validator
         $params = array($this->nombre, $this->descripcion, $this->precio, $this->imagen, $this->estado, $this->categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
+    	// Métodos para los gráficos y reportes del sistema.
+	public function cantidadProductosCategoria()
+	{
+		$sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad FROM productos INNER JOIN categorias USING(id_categoria) GROUP BY id_categoria';
+		$params = array(null);
+		return Database::getRows($sql, $params);
+    }
+    public function cantidadUsuariosCompañia()
+	{
+		$sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad FROM productos INNER JOIN categorias USING(id_categoria) GROUP BY id_categoria';
+		$params = array(null);
+		return Database::getRows($sql, $params);
+	}
+
 }
 ?>
